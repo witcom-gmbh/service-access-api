@@ -1,0 +1,28 @@
+spring:
+    profiles:
+        active: dev
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use gulp + BrowserSync for livereload
+    jackson:
+        serialization.indent_output: true
+    datasource:
+        url: jdbc:h2:./target/serviceaccess;DB_CLOSE_DELAY=-1
+        driver-class-name: org.h2.Driver
+        name:
+        username:
+        password:
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        hibernate:
+          ddl-auto: none
+
+logging:
+  level:
+    "liquibase" : info
+    
+
+    

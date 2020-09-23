@@ -1,0 +1,12 @@
+databaseChangeLog:
+- changeSet:
+    id: 1600863547822-2
+    author: carsten (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: used_in_group
+            type: boolean
+        tableName: service_access_base
+

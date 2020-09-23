@@ -1,0 +1,270 @@
+databaseChangeLog:
+- changeSet:
+    id: 1600845609388-1
+    author: carsten (generated)
+    changes:
+    - createSequence:
+        incrementBy: 1
+        sequenceName: sa_seq
+        startValue: 1
+- changeSet:
+    id: 1600845609388-2
+    author: carsten (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: oogroup_id
+            type: VARCHAR(100)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: oo_id
+            type: VARCHAR(100)
+        tableName: oogroup_oo
+- changeSet:
+    id: 1600845609388-3
+    author: carsten (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: resource_referencePK
+            name: id
+            type: BIGINT
+        - column:
+            name: description
+            type: VARCHAR(500)
+        - column:
+            name: reference_id
+            type: VARCHAR(100)
+        - column:
+            name: type
+            type: VARCHAR(255)
+        - column:
+            name: sa_id
+            type: VARCHAR(100)
+        tableName: resource_reference
+- changeSet:
+    id: 1600845609388-4
+    author: carsten (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: sa_id
+            type: VARCHAR(100)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: tag_id
+            type: BIGINT
+        tableName: sa_tag
+- changeSet:
+    id: 1600845609388-5
+    author: carsten (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: object_type
+            type: VARCHAR(31)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: service_access_basePK
+            name: id
+            type: VARCHAR(100)
+        - column:
+            constraints:
+              nullable: false
+            name: created_date
+            type: TIMESTAMP
+        - column:
+            name: description
+            type: VARCHAR(1000)
+        - column:
+            constraints:
+              nullable: false
+            name: internal
+            type: BOOLEAN
+        - column:
+            name: name
+            type: VARCHAR(100)
+        - column:
+            name: project_id
+            type: VARCHAR(50)
+        - column:
+            name: status
+            type: VARCHAR(20)
+        - column:
+            name: modified_date
+            type: TIMESTAMP
+        - column:
+            name: constraints
+            type: VARCHAR(5000)
+        - column:
+            name: subtype_id
+            type: BIGINT
+        tableName: service_access_base
+- changeSet:
+    id: 1600845609388-6
+    author: carsten (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: service_access_subtypePK
+            name: subtype_id
+            type: BIGINT
+        - column:
+            name: allowed_type
+            type: VARCHAR(255)
+        - column:
+            name: description
+            type: VARCHAR(1000)
+        - column:
+            name: name
+            type: VARCHAR(50)
+        - column:
+            name: number_of_endpoints
+            type: INT
+        - column:
+            name: offer_scope
+            type: VARCHAR(20)
+        - column:
+            name: scope
+            type: VARCHAR(20)
+        tableName: service_access_subtype
+- changeSet:
+    id: 1600845609388-7
+    author: carsten (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: tagPK
+            name: id
+            type: BIGINT
+        - column:
+            name: tag_name
+            type: VARCHAR(100)
+        tableName: tag
+- changeSet:
+    id: 1600845609388-8
+    author: carsten (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: UC_SERVICE_ACCESS_SUBTYPENAME_COL
+        tableName: service_access_subtype
+- changeSet:
+    id: 1600845609388-9
+    author: carsten (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: tag_name
+        constraintName: UC_TAGTAG_NAME_COL
+        tableName: tag
+- changeSet:
+    id: 1600845609388-10
+    author: carsten (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: oo_id
+        baseTableName: oogroup_oo
+        constraintName: FK6pxnkgrbiu06vj5dgk2tt56yc
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: service_access_base
+        validate: true
+- changeSet:
+    id: 1600845609388-11
+    author: carsten (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: tag_id
+        baseTableName: sa_tag
+        constraintName: FKb63y9ifeuusxowiuptvf1tel4
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: tag
+        validate: true
+- changeSet:
+    id: 1600845609388-12
+    author: carsten (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: sa_id
+        baseTableName: sa_tag
+        constraintName: FKgbcqf13tvmxc905krarmmbasf
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: service_access_base
+        validate: true
+- changeSet:
+    id: 1600845609388-13
+    author: carsten (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: subtype_id
+        baseTableName: service_access_base
+        constraintName: FKi70kyvypnhwv99i55i65m9sys
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: subtype_id
+        referencedTableName: service_access_subtype
+        validate: true
+- changeSet:
+    id: 1600845609388-14
+    author: carsten (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: sa_id
+        baseTableName: resource_reference
+        constraintName: FKn009ww4sqyqum8r34uv20gp1d
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: service_access_base
+        validate: true
+- changeSet:
+    id: 1600845609388-15
+    author: carsten (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: oogroup_id
+        baseTableName: oogroup_oo
+        constraintName: FKn1ahux3si6xf4rb99uw7ggkql
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: service_access_base
+        validate: true
+

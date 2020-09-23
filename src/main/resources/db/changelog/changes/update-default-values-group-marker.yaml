@@ -1,0 +1,8 @@
+databaseChangeLog:
+- changeSet:
+    id: set-default-value-for-used-in-group
+    author: carsten (generated)
+    changes:  
+    - sql: 
+        dbms:  'h2'
+        sql: update service_access_base set used_in_group=false

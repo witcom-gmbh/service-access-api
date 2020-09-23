@@ -1,0 +1,11 @@
+databaseChangeLog:
+
+#MARKER#
+  - include:
+      file: db/changelog/changes/20200923091955-init.yaml
+  - include:
+      file: db/changelog/changes/20200923141853-added-in-group-marker.yaml
+  - include:
+      file: db/changelog/changes/added-default-value-group-marker.yaml
+  - include:
+      file: db/changelog/changes/update-default-values-group-marker.yaml

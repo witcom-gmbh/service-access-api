@@ -1,0 +1,22 @@
+spring:
+    application:
+        name: serviceaccess
+    messages:
+        baseName: i18n/messages     
+    profiles:
+        # The commented value for `active` can be replaced with valid Spring profiles to load.
+        # Otherwise, it will be filled in by maven when building the WAR file
+        # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+        active: #spring.profiles.active#
+springdoc:
+#  version: '@springdoc.version@'
+  packagesToScan:
+    - de.witcom.itsm.serviceaccess
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  version: 0.0.1-SNAPSHOT    

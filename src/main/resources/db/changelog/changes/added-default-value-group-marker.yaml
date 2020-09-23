@@ -1,0 +1,11 @@
+databaseChangeLog:
+- changeSet:
+    id: set-default-value-for-used-in-group
+    author: carsten (generated)
+    changes:
+    - addDefaultValue:  
+        columnName:  used_in_group
+        defaultValueBoolean:  false
+        tableName: service_access_base  
+
+
