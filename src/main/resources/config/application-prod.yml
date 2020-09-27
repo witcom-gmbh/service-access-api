@@ -1,0 +1,26 @@
+spring:
+    profiles:
+        active: prod
+    devtools:
+        restart:
+            enabled: false
+        livereload:
+            enabled: false # we use gulp + BrowserSync for livereload
+    jackson:
+        serialization.indent_output: true
+    datasource:
+        url: jdbc:mariadb://${SERVICEACCESS_DB_HOST}:3306/${SERVICEACCESS_DB_NAME}
+        username: ${SERVICEACCESS_DB_USER}
+        password: ${SERVICEACCESS_DB_PASS}
+    jpa:
+        database-platform: org.hibernate.dialect.MariaDB103Dialect
+        database: MYSQL
+        hibernate:
+          ddl-auto: none
+
+logging:
+  level:
+    "liquibase" : info
+    
+
+    

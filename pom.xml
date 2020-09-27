@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>de.witcom.itsm</groupId>
 	<artifactId>serviceaccess</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-RELEASE</version>
 	<name>serviceaccess</name>
 	<description>Microservice for ServiceAccess Management</description>
 
@@ -136,14 +136,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-maven-plugin -->
-
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>${org.liquibase.version}</version>
 				<configuration>
 					<diffChangeLogFile>${diffChangeLogFile}</diffChangeLogFile>
-					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
+					<propertyFile>src/main/resources/${liquibase.properties}</propertyFile>
 					<verbose>false</verbose>
 				</configuration>
 				<dependencies>
@@ -206,8 +204,35 @@
 				<logback.loglevel>WARN</logback.loglevel>
 				<!-- default Spring profiles -->
 				<activeProfiles>dev</activeProfiles>
+				<liquibase.properties>liquibase-dev.properties</liquibase.properties>
 			</properties>
 		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<dependencies>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<properties>
+				<!-- log configuration -->
+				<logback.loglevel>DEBUG</logback.loglevel>
+				<!-- default Spring profiles -->
+				<activeProfiles>prod</activeProfiles>
+				<liquibase.properties>liquibase-prod.properties</liquibase.properties>
+			</properties>
+		</profile>
+
 	</profiles>
 
 </project>

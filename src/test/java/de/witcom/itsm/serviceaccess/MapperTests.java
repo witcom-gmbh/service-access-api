@@ -249,7 +249,7 @@ class MapperTests {
 		
 		saMapper.createUpdateFromDTO(dto, entity);
 		assertThat(entity.getResources(),hasSize(1));
-		assertThat(entity.getTags(),hasSize(2));
+		
 		assertThat(entity.getSubType().getName(),is(stHA.getName()));
 		
 	}
