@@ -83,6 +83,23 @@ public class ServiceAccessOtherOperatorGroup extends ServiceAccessBase{
 		
 		
 	}
+	
+    @Override
+    public int hashCode() {
+        return 16;
+    }
+ 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ServiceAccessOtherOperatorGroup other = (ServiceAccessOtherOperatorGroup) obj;
+        return this.getId() != null && this.getId().equals(other.getId());
+    }		
 
 	
 }

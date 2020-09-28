@@ -31,4 +31,22 @@ public class ServiceAccessInfraPassive extends ServiceAccessBase{
 		
 	}
 	
+    @Override
+    public int hashCode() {
+        return 14;
+    }
+ 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ServiceAccessInfraPassive other = (ServiceAccessInfraPassive) obj;
+        return this.getId() != null && this.getId().equals(other.getId());
+    }	
+	
+	
 }

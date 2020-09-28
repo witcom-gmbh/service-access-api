@@ -13,6 +13,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import de.witcom.itsm.serviceaccess.entity.ServiceAccessOtherOperatorGroup;
 import de.witcom.itsm.serviceaccess.entity.Tag;
 import de.witcom.itsm.serviceaccess.enums.ServiceAccessOfferScope;
 import de.witcom.itsm.serviceaccess.enums.ServiceAccessScope;
@@ -48,5 +49,22 @@ public class ServiceAccessBaseDTO {
 		
 		
 	}
+	
+    @Override
+    public int hashCode() {
+        return 13;
+    }
+ 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ServiceAccessBaseDTO other = (ServiceAccessBaseDTO) obj;
+        return this.getId() != null && this.getId().equals(other.getId());
+    }
 
 }

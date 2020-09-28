@@ -62,6 +62,24 @@ public class ServiceAccessInfraOtherOperator extends ServiceAccessBase{
 			this.setUsedInGroup(false);
 		}
 	}
+	
+    @Override
+    public int hashCode() {
+        return 15;
+    }
+ 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ServiceAccessInfraOtherOperator other = (ServiceAccessInfraOtherOperator) obj;
+        return this.getId() != null && this.getId().equals(other.getId());
+    }	
+
 
 	
 }
