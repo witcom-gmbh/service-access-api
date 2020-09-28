@@ -1,5 +1,7 @@
 package de.witcom.itsm.serviceaccess;
 
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.Matchers.contains;
@@ -21,6 +23,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.hamcrest.Matchers;
 import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -333,6 +336,30 @@ class ServiceTests {
 		log.debug("Update DTO {}",dto.toString());
 		createdDto = saService.updateServiceAccess(createdDto.getId(), dto);
 		assertThat(createdDto.getProjectId(),is("0815"));
+		
+	}
+	
+	@Test
+	void findServiceAccessByObjectType() {
+
+		ServiceAccessSubtypeDTO st = saService.getSubtypeByName("HA-LWL").orElseThrow();
+		
+		CreateUpdateServiceAccessInfraPassiveDTO dto = new CreateUpdateServiceAccessInfraPassiveDTO();
+		dto.setName(RandomStringUtils.random(10, true, true));
+		dto.setSubType(st);
+		dto.setProjectId("12345");
+		
+		ServiceAccessBaseDTO created = saService.createServiceAccess(dto);
+		
+		List<ServiceAccessBase> res = saService.getServiceAccess(ServiceAccessObjectType.InfraPassive);
+		assertThat(
+				  res,
+				  hasItem(allOf(
+				    Matchers.<ServiceAccessBase>hasProperty("id", is(created.getId()))
+				  ))
+				);
+		
+		saRepo.deleteById(created.getId());
 		
 	}
 

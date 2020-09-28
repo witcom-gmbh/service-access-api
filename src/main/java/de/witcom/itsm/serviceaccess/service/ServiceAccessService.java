@@ -13,6 +13,7 @@ import de.witcom.itsm.serviceaccess.dto.TagDTO;
 import de.witcom.itsm.serviceaccess.dto.UpdateServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessBase;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessSubtype;
+import de.witcom.itsm.serviceaccess.enums.ServiceAccessObjectType;
 import de.witcom.itsm.serviceaccess.enums.ServiceAccessStatus;
 import de.witcom.itsm.serviceaccess.exception.BadRequestException;
 import de.witcom.itsm.serviceaccess.exception.NotFoundException;
@@ -31,6 +32,7 @@ public interface ServiceAccessService {
 	public ServiceAccessBaseDTO updateServiceAccess(String id,CreateUpdateServiceAccessBaseDTO dto)
 			throws BadRequestException,PersistenceException;
 	public List<ServiceAccessBase> getServiceAccess();
+	public List<ServiceAccessBase> getServiceAccess(ServiceAccessObjectType objectType);
 
 
 	public ServiceAccessSubtypeDTO createSubtype(CreateServiceAccessSubtypeDTO dto) throws PersistenceException;
