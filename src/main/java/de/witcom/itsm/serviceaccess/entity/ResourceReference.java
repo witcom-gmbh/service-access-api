@@ -57,4 +57,20 @@ public class ResourceReference {
     	return ret;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+             
+        if (!(o instanceof ResourceReference))
+            return false;
+             
+        return
+            id != null &&
+           id.equals(((ResourceReference) o).getId());
+    }
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }
