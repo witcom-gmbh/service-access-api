@@ -7,6 +7,7 @@ public enum ResourceType {
 	RMDB_ZONE("RMDB_ZONE","RMDB Zone"),
 	RMDB_OBJECT("RMDB_OBJECT","RMDB Objekt"),
 	RMDB_CONTRACT("RMDB_CONTRACT","RMDB-Vertrag"),
+	RMDB_NNI("RMDB_NNI","RMDB Netzkopplung"),
 	CRM_CONTACT("CRM_CONTACT","Firma");
 	
 	private String name;
