@@ -1,6 +1,8 @@
 package de.witcom.itsm.serviceaccess;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -19,6 +21,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -159,7 +162,7 @@ class ServiceTests {
 	}
 
 	
-	//@Test
+	@Test
 	void lookuptests() {
 		
 		assertThat(saService.getSubtypeByName("HA-LWL"),is(not(Optional.empty())));
@@ -256,6 +259,48 @@ class ServiceTests {
 		saService.updateTags(persisted.getId(), new ArrayList<TagDTO>() );
 		mysa = saService.getServiceAccessById(persisted.getId()).get();
 		assertThat(mysa.getTags(), hasSize(0));
+		
+	}
+	
+	@Test
+	void resourceTests() {
+		
+		ServiceAccessSubtypeDTO st = saService.getSubtypeByName("HA-LWL").orElseThrow();
+		
+		CreateUpdateServiceAccessInfraPassiveDTO dto = new CreateUpdateServiceAccessInfraPassiveDTO();
+		dto.setName("resource-tests");
+		dto.setSubType(st);
+		
+		
+		ResourceReferenceDTO resref = new ResourceReferenceDTO();
+		resref.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_OBJECT));
+		resref.setReferenceId(RandomStringUtils.random(10, true, true));
+		dto.getResources().add(resref);
+		
+		resref = new ResourceReferenceDTO();
+		resref.setType(ResourceTypeDTO.fromEnum(ResourceType.CRM_CONTACT));
+		resref.setReferenceId(RandomStringUtils.random(10, true, true));
+		dto.getResources().add(resref);
+		
+		resref = new ResourceReferenceDTO();
+		resref.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_CONTRACT));
+		resref.setReferenceId(RandomStringUtils.random(10, true, true));
+		dto.getResources().add(resref);
+		
+		resref = new ResourceReferenceDTO();
+		resref.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_NNI));
+		resref.setReferenceId(RandomStringUtils.random(10, true, true));
+		dto.getResources().add(resref);
+		
+		resref = new ResourceReferenceDTO();
+		resref.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_ZONE));
+		resref.setReferenceId(RandomStringUtils.random(10, true, true));
+		dto.getResources().add(resref);
+
+		ServiceAccessBaseDTO createdDto = saService.createServiceAccess(dto);
+		
+		ServiceAccessBaseDTO loaded = saService.getServiceAccessById(createdDto.getId()).get();
+		assertThat(loaded.getResources(),hasSize(5));
 		
 	}
 	
