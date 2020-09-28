@@ -1,8 +1,10 @@
 package de.witcom.itsm.serviceaccess;
 
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -158,6 +160,49 @@ class MapperTests {
 				);
 		
 		return infraPassive1;
+	}
+	@Test
+	void testEquals() {
+
+		HashSet<ResourceReference> resRef = new HashSet<ResourceReference>();
+		ResourceReference res = new ResourceReference();
+		res.setType(ResourceType.RMDB_OBJECT);
+		res.setReferenceId("SOME-RMDB-ID");
+		res.setDescription("NOTUNIQUE");
+		resRef.add(res );
+		
+		res = new ResourceReference();
+		res.setType(ResourceType.RMDB_ZONE);
+		res.setReferenceId("NX-ID");
+		res.setDescription("NOTUNIQUE");
+		resRef.add(res );
+
+		res = new ResourceReference();
+		res.setType(ResourceType.CRM_CONTACT);
+		res.setReferenceId("NOTUNIQUE");
+		resRef.add(res);
+		
+		ServiceAccessInfraOtherOperator entity1 = ServiceAccessInfraOtherOperator.builder()
+				.id("SA000000001")
+				.projectId("20449")
+				.resources(resRef)
+				.build();
+		
+		ServiceAccessInfraOtherOperator entity2 = ServiceAccessInfraOtherOperator.builder()
+				.id("SA000000003")
+				.projectId("20449")
+				.resources(resRef)
+				.build();
+		
+		
+		//entities are not equal ?
+		assertThat(entity1,is(not(entity2)));
+		//dtos are not equal ?
+		assertThat(saMapper.toDto(entity1),is(not(saMapper.toDto(entity2))));
+		
+		
+		
+		
 	}
 
 	@Test

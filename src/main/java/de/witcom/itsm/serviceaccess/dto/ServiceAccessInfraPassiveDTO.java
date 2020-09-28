@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+//@EqualsAndHashCode(callSuper=false)
 @ToString(callSuper=true, includeFieldNames=true)
 public class ServiceAccessInfraPassiveDTO extends ServiceAccessBaseDTO{
 
@@ -16,5 +16,23 @@ public class ServiceAccessInfraPassiveDTO extends ServiceAccessBaseDTO{
 		
 		
 	}
+	
+    @Override
+    public int hashCode() {
+        return 14;
+    }
+ 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ServiceAccessInfraPassiveDTO other = (ServiceAccessInfraPassiveDTO) obj;
+        return this.getId() != null && this.getId().equals(other.getId());
+    }
+
 	
 }
