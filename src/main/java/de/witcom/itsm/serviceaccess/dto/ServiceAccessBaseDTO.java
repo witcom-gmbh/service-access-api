@@ -23,16 +23,19 @@ import de.witcom.itsm.serviceaccess.enums.ServiceAccessStatus;
 @Data
 @AllArgsConstructor
 //@NoArgsConstructor
+/*
 @JsonTypeInfo(
 		use = JsonTypeInfo.Id.NAME,
 		include = JsonTypeInfo.As.PROPERTY,
 		property = "type"
 )
+
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = ServiceAccessInfraPassiveDTO.class, name = "ServiceAccessInfraPassiveDTO"),
 		@JsonSubTypes.Type(value = ServiceAccessInfraOtherOperatorDTO.class, name = "ServiceAccessInfraOtherOperatorDTO"),
 		@JsonSubTypes.Type(value = ServiceAccessOtherOperatorGroupDTO.class, name = "ServiceAccessOtherOperatorGroupDTO")
 })
+*/
 public class ServiceAccessBaseDTO {
 	
 	private String id;
@@ -44,6 +47,7 @@ public class ServiceAccessBaseDTO {
 	private boolean internal;
 	private Set<TagDTO> tags = new HashSet<TagDTO>();
 
+	//private String type;
 	
 	public ServiceAccessBaseDTO() {
 		

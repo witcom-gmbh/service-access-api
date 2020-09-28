@@ -23,16 +23,19 @@ import de.witcom.itsm.serviceaccess.enums.ServiceAccessStatus;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+/*
 @JsonTypeInfo(
 		use = JsonTypeInfo.Id.NAME,
 		include = JsonTypeInfo.As.PROPERTY,
 		property = "type"
 )
+
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = CreateUpdateServiceAccessInfraPassiveDTO.class, name = "CreateUpdateServiceAccessInfraPassiveDTO"),
 		@JsonSubTypes.Type(value = CreateUpdateServiceAccessInfraOtherOperatorDTO.class, name = "CreateUpdateServiceAccessInfraOtherOperatorDTO"),
 		@JsonSubTypes.Type(value = CreateUpdateServiceAccessOtherOperatorGroupDTO.class, name = "CreateUpdateServiceAccessOtherOperatorGroupDTO")
 })
+*/
 public class CreateUpdateServiceAccessBaseDTO {
 	@JsonProperty(required = true)
 	private String name;

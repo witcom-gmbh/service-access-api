@@ -18,14 +18,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.witcom.itsm.serviceaccess.dto.CreateServiceAccessSubtypeDTO;
-import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessBaseDTO;
-import de.witcom.itsm.serviceaccess.dto.ServiceAccessBaseDTO;
+import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessInfraOtherOperatorDTO;
+import de.witcom.itsm.serviceaccess.dto.ServiceAccessInfraOtherOperatorDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessInfraOtherOperatorDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorGroupDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessStatusDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.dto.TagDTO;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessBase;
+import de.witcom.itsm.serviceaccess.entity.ServiceAccessInfraOtherOperator;
+import de.witcom.itsm.serviceaccess.entity.ServiceAccessInfraPassive;
+import de.witcom.itsm.serviceaccess.enums.ServiceAccessObjectType;
 import de.witcom.itsm.serviceaccess.exception.NotFoundException;
 import de.witcom.itsm.serviceaccess.mapper.EnumMapper;
 import de.witcom.itsm.serviceaccess.mapper.ServiceAccessMapper;
@@ -38,10 +41,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "serviceaccess")
+@Tag(name = "infra-other-operator")
 @RestController
-@RequestMapping("/api/v1/serviceaccess")
-public class ServiceAccessController {
+@RequestMapping("/api/v1/serviceaccess/infraotheroperator")
+public class ServiceAccessInfraOtherOperatorController {
 	
 	@Autowired
 	ServiceAccessMapper saMapper;
@@ -52,49 +55,49 @@ public class ServiceAccessController {
 	@Autowired
 	EnumMapper enumMapper;
 	
-	/*
+	
 	@PostMapping(value="", produces=MediaType.APPLICATION_JSON_VALUE)
-	@Operation(description = "Create ServiceAccess", responses = {
+	@Operation(description = "Create ServiceAccess for other-operators infrastructure", responses = {
 				@ApiResponse(responseCode = "200"),
 				@ApiResponse(responseCode = "500", description = "Backend error"),
 				@ApiResponse(responseCode = "400", description = "Malformed request")
 				})
-	public @ResponseBody ResponseEntity<ServiceAccessBaseDTO> createServiceAccess(@RequestBody CreateUpdateServiceAccessBaseDTO dto) {
-		return new ResponseEntity<ServiceAccessBaseDTO>(saService.createServiceAccess(dto),HttpStatus.OK);
+	public @ResponseBody ResponseEntity<ServiceAccessInfraOtherOperatorDTO> createServiceAccessInfraOtherOperator(@RequestBody CreateUpdateServiceAccessInfraOtherOperatorDTO dto) {
+		return new ResponseEntity<ServiceAccessInfraOtherOperatorDTO>((ServiceAccessInfraOtherOperatorDTO) saService.createServiceAccess(dto),HttpStatus.OK);
 	}
 	
 	@PutMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
-	@Operation(description = "Updates ServiceAccess", responses = {
+	@Operation(description = "Updates ServiceAccess for other-operators infrastructure", responses = {
 				@ApiResponse(responseCode = "200"),
 				@ApiResponse(responseCode = "500", description = "Backend error"),
 				@ApiResponse(responseCode = "400", description = "Malformed request")
 				})
-	public @ResponseBody ResponseEntity<ServiceAccessBaseDTO> updateServiceAccess(@PathVariable String id,@RequestBody CreateUpdateServiceAccessBaseDTO dto) {
-		return new ResponseEntity<ServiceAccessBaseDTO>(saService.updateServiceAccess(id, dto),HttpStatus.OK);
+	public @ResponseBody ResponseEntity<ServiceAccessInfraOtherOperatorDTO> updateServiceAccessInfraOtherOperator(@PathVariable String id,@RequestBody CreateUpdateServiceAccessInfraOtherOperatorDTO dto) {
+		return new ResponseEntity<ServiceAccessInfraOtherOperatorDTO>((ServiceAccessInfraOtherOperatorDTO) saService.updateServiceAccess(id, dto),HttpStatus.OK);
 	}
 
 	@PutMapping(value="/{id}/tags", produces=MediaType.APPLICATION_JSON_VALUE)
-	@Operation(description = "Updates Tags for ServiceAccess", responses = {
+	@Operation(description = "Updates Tags for passive other-operators ServiceAccess", responses = {
 				@ApiResponse(responseCode = "200"),
 				@ApiResponse(responseCode = "500", description = "Backend error"),
 				@ApiResponse(responseCode = "400", description = "Malformed request")
 				})
-	public @ResponseBody ResponseEntity<ServiceAccessBaseDTO> updateServiceAccessTags(@PathVariable String id,@RequestBody List<TagDTO> tags) {
-		return new ResponseEntity<ServiceAccessBaseDTO>(saService.updateTags(id, tags),HttpStatus.OK);
+	public @ResponseBody ResponseEntity<ServiceAccessInfraOtherOperatorDTO> updateServiceAccessInfraOtherOperatorTags(@PathVariable String id,@RequestBody List<TagDTO> tags) {
+		return new ResponseEntity<ServiceAccessInfraOtherOperatorDTO>((ServiceAccessInfraOtherOperatorDTO) saService.updateTags(id, tags),HttpStatus.OK);
 	}
 	
 	@PutMapping(value="/{id}/status", produces=MediaType.APPLICATION_JSON_VALUE)
-	@Operation(description = "Sets status for ServiceAccess", responses = {
+	@Operation(description = "Sets status for other-operators infrastructure ServiceAccess", responses = {
 				@ApiResponse(responseCode = "200"),
 				@ApiResponse(responseCode = "500", description = "Backend error"),
 				@ApiResponse(responseCode = "400", description = "Malformed request")
 				})
-	public @ResponseBody ResponseEntity<ServiceAccessBaseDTO> updateServiceAccessStatus(@PathVariable String id,@RequestBody ServiceAccessStatusDTO status) {
-		return new ResponseEntity<ServiceAccessBaseDTO>(saService.updateServiceAccessStatus(id, enumMapper.dtoToEnum(status)),HttpStatus.OK);
+	public @ResponseBody ResponseEntity<ServiceAccessInfraOtherOperatorDTO> updateServiceAccessInfraOtherOperatorStatus(@PathVariable String id,@RequestBody ServiceAccessStatusDTO status) {
+		return new ResponseEntity<ServiceAccessInfraOtherOperatorDTO>((ServiceAccessInfraOtherOperatorDTO) saService.updateServiceAccessStatus(id, enumMapper.dtoToEnum(status)),HttpStatus.OK);
 	}
 	
 
-	
+/*	
 	@PutMapping(value="/{id}/otherOperators", produces=MediaType.APPLICATION_JSON_VALUE)
 	@Operation(description = "Updates Tags for ServiceAccess", responses = {
 				@ApiResponse(responseCode = "200"),
@@ -104,36 +107,36 @@ public class ServiceAccessController {
 	public @ResponseBody ResponseEntity<ServiceAccessOtherOperatorGroupDTO> updateServiceAccessInfraGroupMembers(@PathVariable String id,@RequestBody List<ServiceAccessInfraOtherOperatorDTO> otherOperators) {
 		return new ResponseEntity<ServiceAccessOtherOperatorGroupDTO>(saService.updateOtherOperators(id, otherOperators),HttpStatus.OK);
 	}
-	*/
+*/
 	
 	
 	@RequestMapping(value="", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-    @Operation(description = "List all ServiceAccesses", responses = {
+    @Operation(description = "List all ServiceAccesses for other-operators infrastructure", responses = {
             @ApiResponse( responseCode = "200"),
             @ApiResponse(responseCode = "500", description = "Backend error")
             })
-	public @ResponseBody ResponseEntity<List<ServiceAccessBaseDTO>> getAllServiceAccess() {
+	public @ResponseBody ResponseEntity<List<ServiceAccessInfraOtherOperatorDTO>> getAllServiceAccessInfraOtherOperator() {
 		
-		return new ResponseEntity<List<ServiceAccessBaseDTO>>(
-				saService.getServiceAccess()
+		return new ResponseEntity<List<ServiceAccessInfraOtherOperatorDTO>>(
+				saService.getServiceAccess(ServiceAccessObjectType.InfraOtherOperator)
 				.stream()
-				.map(e -> saMapper.toDto(e))
+				.map(e -> saMapper.toServiceAccessInfraOtherOperatorDTO((ServiceAccessInfraOtherOperator) e))
 				.collect(Collectors.toList())
 				, HttpStatus.OK);
 		
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-    @Operation(description = "Get ServiceAccessBaseDTO by id", responses = {
+    @Operation(description = "Get ServiceAccessInfraOtherOperatorDTO by id", responses = {
 			@ApiResponse(responseCode = "200"),
-			@ApiResponse(responseCode = "404", description = "ServiceAccessBaseDTO doesn't exist"),
+			@ApiResponse(responseCode = "404", description = "ServiceAccessInfraOtherOperatorDTO doesn't exist"),
 			@ApiResponse(responseCode = "500", description = "Backend error")
 			}   
     		)
-	public @ResponseBody ResponseEntity<ServiceAccessBaseDTO> getServiceAccessSubtypesById(@PathVariable String id) {
+	public @ResponseBody ResponseEntity<ServiceAccessInfraOtherOperatorDTO> getServiceAccessInfraOtherOperatorById(@PathVariable String id) {
 		
-		return new ResponseEntity<ServiceAccessBaseDTO>(
-				saService.getServiceAccessById(id)
+		return new ResponseEntity<ServiceAccessInfraOtherOperatorDTO>(
+				(ServiceAccessInfraOtherOperatorDTO) saService.getServiceAccessById(id)
 						.orElseThrow(() -> new NotFoundException(Translator.toLocale(
 								"error.persistence.notfound"
 								,new Object[] {ServiceAccessBase.class.getSimpleName(),id}))

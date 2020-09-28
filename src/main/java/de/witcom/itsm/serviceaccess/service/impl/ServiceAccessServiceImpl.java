@@ -76,6 +76,10 @@ public class ServiceAccessServiceImpl implements ServiceAccessService {
 	public List<ServiceAccessBase> getServiceAccess(){
 		return saRepo.findAll();
 	}
+	
+	public List<ServiceAccessBase> getServiceAccess(ServiceAccessObjectType objectType){
+		return saRepo.findBySubTypeAllowedObjectType(objectType);
+	}
 
 
 	public ServiceAccessBaseDTO updateServiceAccessStatus(String id,ServiceAccessStatus status)
