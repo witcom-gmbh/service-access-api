@@ -75,7 +75,8 @@ public class ServiceAccessBase {
 	
 	@Builder.Default
 	@OneToMany(mappedBy="serviceAccess",fetch = FetchType.EAGER
-	,cascade = CascadeType.ALL
+	,cascade = CascadeType.ALL,
+    orphanRemoval = true
 	)
 	private Set<ResourceReference> resources = new HashSet<ResourceReference>();
 
@@ -100,6 +101,30 @@ public class ServiceAccessBase {
     public void addResourceReference(ResourceReference resource){
     	resource.setServiceAccess(this);
     	resources.add(resource);
+    }
+    
+    public void removeResourceReference(ResourceReference resource) {
+    	resources.remove(resource);
+        resource.setServiceAccess(null);
+    }
+
+    public void removeAllResourceReference() {
+    	Set<ResourceReference> safeCopy = new HashSet<ResourceReference>(this.getResources());
+    	for (ResourceReference ref:safeCopy) {
+    		this.removeResourceReference(ref);
+		}
+    }
+
+    public void updateResourceReference(Set<ResourceReference> updatedRefs) {
+    	Set<ResourceReference> safeCopy = new HashSet<ResourceReference>(this.getResources());
+    	for (ResourceReference ref:safeCopy) {
+			if (!updatedRefs.contains(ref)) {
+				this.removeResourceReference(ref);
+			}
+		}
+		for (ResourceReference ref : updatedRefs) {
+			this.addResourceReference(ref);
+		}
     }
     
     public void addTag(Tag tag) {

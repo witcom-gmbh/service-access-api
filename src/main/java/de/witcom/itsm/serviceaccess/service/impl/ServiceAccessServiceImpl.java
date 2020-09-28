@@ -71,7 +71,6 @@ public class ServiceAccessServiceImpl implements ServiceAccessService {
 		
 		return saRepo.findById(id).stream().map(s -> saMapper.toDto(s)).findAny();
 		
-		//return saRepo.findById(id);
 	}
 	
 	public List<ServiceAccessBase> getServiceAccess(){
@@ -285,12 +284,20 @@ public class ServiceAccessServiceImpl implements ServiceAccessService {
 		);
 		//keep old subtype
 		dto.setSubType(saMapper.toServiceAccessSubtypeDTO(entity.getSubType()));
-		
+
+		//remove old resources
+		entity.removeAllResourceReference();
+
 		saMapper.createUpdateFromDTO(dto, entity);
-		
+
+		/*
+		 * This works too, but passing the resource-ref-id from dto is required
+		Set<ResourceReference> updatedRefs = dto.getResources().stream().map(ref -> saMapper.toResourceReference(ref)).collect(Collectors.toSet());
+		entity.updateResourceReference(updatedRefs);
+		*/
+
 		entity=this.createOrUpdateServiceAccess(entity);
-		
-		ServiceAccessBaseDTO test = saMapper.toDto(entity);
+ 		
 		return saMapper.toDto(entity);
 		
 		
@@ -311,6 +318,8 @@ public class ServiceAccessServiceImpl implements ServiceAccessService {
 			Object[] args = {ServiceAccessBase.class.getSimpleName()};
 			throw new BadRequestException(Translator.toLocale("error.persistence.store",args));
 		}
+		
+		
 		
 		//log.debug("Before Store {}",entity.getResources().iterator().next().toString());
 		//status-handling
