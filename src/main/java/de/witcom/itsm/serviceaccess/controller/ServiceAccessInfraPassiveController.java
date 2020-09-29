@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import de.witcom.itsm.serviceaccess.dto.CreateServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessInfraPassiveDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessInfraPassiveDTO;
-import de.witcom.itsm.serviceaccess.dto.ServiceAccessInfraOtherOperatorDTO;
+import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorGroupDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessStatusDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessSubtypeDTO;

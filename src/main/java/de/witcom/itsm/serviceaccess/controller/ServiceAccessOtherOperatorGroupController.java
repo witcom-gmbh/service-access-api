@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import de.witcom.itsm.serviceaccess.dto.CreateServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessOtherOperatorGroupDTO;
-import de.witcom.itsm.serviceaccess.dto.ServiceAccessInfraOtherOperatorDTO;
+import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorGroupDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorGroupDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorGroupDTO;
@@ -27,7 +27,7 @@ import de.witcom.itsm.serviceaccess.dto.ServiceAccessStatusDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.dto.TagDTO;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessBase;
-import de.witcom.itsm.serviceaccess.entity.ServiceAccessInfraOtherOperator;
+import de.witcom.itsm.serviceaccess.entity.ServiceAccessOtherOperator;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessInfraPassive;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessOtherOperatorGroup;
 import de.witcom.itsm.serviceaccess.enums.ServiceAccessObjectType;
@@ -106,7 +106,7 @@ public class ServiceAccessOtherOperatorGroupController {
 				@ApiResponse(responseCode = "500", description = "Backend error"),
 				@ApiResponse(responseCode = "400", description = "Malformed request")
 				})
-	public @ResponseBody ResponseEntity<ServiceAccessOtherOperatorGroupDTO> updateServiceAccessInfraGroupMembers(@PathVariable String id,@RequestBody List<ServiceAccessInfraOtherOperatorDTO> otherOperators) {
+	public @ResponseBody ResponseEntity<ServiceAccessOtherOperatorGroupDTO> updateServiceAccessInfraGroupMembers(@PathVariable String id,@RequestBody List<ServiceAccessOtherOperatorDTO> otherOperators) {
 		return new ResponseEntity<ServiceAccessOtherOperatorGroupDTO>(saService.updateOtherOperators(id, otherOperators),HttpStatus.OK);
 	}
 

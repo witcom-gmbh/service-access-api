@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString(callSuper=true, includeFieldNames=true)
 public class ServiceAccessOtherOperatorGroupDTO extends ServiceAccessBaseDTO{
 
-	Set<ServiceAccessInfraOtherOperatorDTO> otherOperators;
+	Set<ServiceAccessOtherOperatorDTO> otherOperators;
 	
     @Override
     public int hashCode() {

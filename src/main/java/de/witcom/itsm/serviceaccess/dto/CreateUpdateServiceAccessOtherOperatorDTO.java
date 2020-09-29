@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper=true, includeFieldNames=true)
-public class CreateUpdateServiceAccessInfraOtherOperatorDTO extends CreateUpdateServiceAccessBaseDTO{
+public class CreateUpdateServiceAccessOtherOperatorDTO extends CreateUpdateServiceAccessBaseDTO{
 	
 	private String constraints;
 

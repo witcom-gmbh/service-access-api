@@ -92,7 +92,7 @@ class ServiceTests {
 				.name("ETHERNET-WHOLEBUY")
 				.description("Ethernet Fremdoperator")
 				.numberOfEndpoints(2)
-				.allowedObjectType(ServiceAccessObjectType.InfraOtherOperator)
+				.allowedObjectType(ServiceAccessObjectType.OtherOperator)
 				.scope(ServiceAccessScope.SERVICE)
 				.offerScope(ServiceAccessOfferScope.SERVICE)
 				.build();
@@ -145,7 +145,7 @@ class ServiceTests {
 		res.setReferenceId(RandomStringUtils.random(10, true, true));
 		resRef.add(res );
 		
-		CreateUpdateServiceAccessInfraOtherOperatorDTO dto = new CreateUpdateServiceAccessInfraOtherOperatorDTO();
+		CreateUpdateServiceAccessOtherOperatorDTO dto = new CreateUpdateServiceAccessOtherOperatorDTO();
 		dto.setName(RandomStringUtils.random(10, true, false));
 		dto.setProjectId(RandomStringUtils.random(5, false, true));
 		dto.setResources(resRef);
@@ -197,20 +197,20 @@ class ServiceTests {
 		log.debug(persistedGroup.toString());
 		
 		//lets add one operator to the group
-		List<ServiceAccessInfraOtherOperatorDTO> otherOperators = new ArrayList<ServiceAccessInfraOtherOperatorDTO>();
+		List<ServiceAccessOtherOperatorDTO> otherOperators = new ArrayList<ServiceAccessOtherOperatorDTO>();
 		
-		otherOperators.add((ServiceAccessInfraOtherOperatorDTO) persistedDto1);
+		otherOperators.add((ServiceAccessOtherOperatorDTO) persistedDto1);
 		saService.updateOtherOperators(persistedGroup.getId(), otherOperators);
 		persistedGroup = (ServiceAccessOtherOperatorGroupDTO) saService.getServiceAccessById(persistedGroup.getId()).get();
 		
 		//load the service service that builds the group and check if has been marked as used in group
-		ServiceAccessInfraOtherOperatorDTO loaded = (ServiceAccessInfraOtherOperatorDTO) saService.getServiceAccessById(persistedDto1.getId()).get();
+		ServiceAccessOtherOperatorDTO loaded = (ServiceAccessOtherOperatorDTO) saService.getServiceAccessById(persistedDto1.getId()).get();
 		assertThat(loaded.isUsedInGroup(),is(true));
 		
 		//remove the group
-		otherOperators = new ArrayList<ServiceAccessInfraOtherOperatorDTO>();
+		otherOperators = new ArrayList<ServiceAccessOtherOperatorDTO>();
 		saService.updateOtherOperators(persistedGroup.getId(), otherOperators);
-		loaded = (ServiceAccessInfraOtherOperatorDTO) saService.getServiceAccessById(persistedDto1.getId()).get();
+		loaded = (ServiceAccessOtherOperatorDTO) saService.getServiceAccessById(persistedDto1.getId()).get();
 		assertThat(loaded.isUsedInGroup(),is(false));
 		
 		/*

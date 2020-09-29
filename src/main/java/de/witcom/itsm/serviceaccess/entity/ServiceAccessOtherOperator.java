@@ -18,7 +18,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@DiscriminatorValue("InfraOtherOperator")
+@DiscriminatorValue("OtherOperator")
 //@EqualsAndHashCode(callSuper=false)
 //@Data
 @Getter
@@ -28,7 +28,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @ToString(callSuper=true, includeFieldNames=true)
 @SuperBuilder
-public class ServiceAccessInfraOtherOperator extends ServiceAccessBase{
+public class ServiceAccessOtherOperator extends ServiceAccessBase{
 	
 	@Column(length = 5000)
 	private String constraints;
@@ -76,7 +76,7 @@ public class ServiceAccessInfraOtherOperator extends ServiceAccessBase{
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ServiceAccessInfraOtherOperator other = (ServiceAccessInfraOtherOperator) obj;
+        ServiceAccessOtherOperator other = (ServiceAccessOtherOperator) obj;
         return this.getId() != null && this.getId().equals(other.getId());
     }	
 

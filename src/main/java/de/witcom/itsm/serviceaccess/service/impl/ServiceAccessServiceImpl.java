@@ -19,18 +19,18 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import de.witcom.itsm.serviceaccess.dto.CreateServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessBaseDTO;
-import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessInfraOtherOperatorDTO;
+import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessOtherOperatorDTO;
 import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessInfraPassiveDTO;
 import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessOtherOperatorGroupDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessBaseDTO;
-import de.witcom.itsm.serviceaccess.dto.ServiceAccessInfraOtherOperatorDTO;
+import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorGroupDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.dto.TagDTO;
 import de.witcom.itsm.serviceaccess.dto.UpdateServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.entity.ResourceReference;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessBase;
-import de.witcom.itsm.serviceaccess.entity.ServiceAccessInfraOtherOperator;
+import de.witcom.itsm.serviceaccess.entity.ServiceAccessOtherOperator;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessInfraPassive;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessOtherOperatorGroup;
 import de.witcom.itsm.serviceaccess.entity.ServiceAccessSubtype;
@@ -103,7 +103,7 @@ public class ServiceAccessServiceImpl implements ServiceAccessService {
 	 * @return
 	 */
 	public ServiceAccessOtherOperatorGroupDTO updateOtherOperators(String id,
-			List<ServiceAccessInfraOtherOperatorDTO> otherOperators) {
+			List<ServiceAccessOtherOperatorDTO> otherOperators) {
 		
 		ServiceAccessBase entity = saRepo.findById(id).orElseThrow(
 				() -> new NotFoundException(Translator.toLocale(
@@ -121,7 +121,7 @@ public class ServiceAccessServiceImpl implements ServiceAccessService {
 		ServiceAccessOtherOperatorGroup groupEntity = (ServiceAccessOtherOperatorGroup) entity;
 		
 		
-		Set<ServiceAccessInfraOtherOperator> updatedChilds = otherOperators.stream().map(oo -> {
+		Set<ServiceAccessOtherOperator> updatedChilds = otherOperators.stream().map(oo -> {
 			
 			if (oo.getId()==null) {
 				throw new NotFoundException(Translator.toLocale(
@@ -134,7 +134,7 @@ public class ServiceAccessServiceImpl implements ServiceAccessService {
 					,new Object[] {Tag.class.getSimpleName(),id}))
 			);
 			
-			if (!(childentity instanceof ServiceAccessInfraOtherOperator)) {
+			if (!(childentity instanceof ServiceAccessOtherOperator)) {
 				log.error("Trying to add ServiceAccess {} on Non-ServiceAccessInfraOtherOperator to InfraOtherGroup",childentity.toString());
 				throw new BadRequestException(
 						Translator.toLocale(
@@ -144,7 +144,7 @@ public class ServiceAccessServiceImpl implements ServiceAccessService {
 						);
 			}
 			
-			return (ServiceAccessInfraOtherOperator)childentity;
+			return (ServiceAccessOtherOperator)childentity;
 		}).collect(Collectors.toSet());
 
 		//update membership
@@ -203,8 +203,8 @@ public class ServiceAccessServiceImpl implements ServiceAccessService {
 		
 		if (dto instanceof CreateUpdateServiceAccessInfraPassiveDTO) {
 			entity = ServiceAccessInfraPassive.builder().build();
-		} else if (dto instanceof CreateUpdateServiceAccessInfraOtherOperatorDTO) {
-			entity = ServiceAccessInfraOtherOperator.builder().build();
+		} else if (dto instanceof CreateUpdateServiceAccessOtherOperatorDTO) {
+			entity = ServiceAccessOtherOperator.builder().build();
 		} else if (dto instanceof CreateUpdateServiceAccessOtherOperatorGroupDTO) {
 			entity = ServiceAccessOtherOperatorGroup.builder().build();
 		} else {

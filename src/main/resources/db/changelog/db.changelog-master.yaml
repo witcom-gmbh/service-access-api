@@ -9,3 +9,7 @@ databaseChangeLog:
       file: db/changelog/changes/added-default-value-group-marker.yaml
   - include:
       file: db/changelog/changes/update-default-values-group-marker.yaml
+  - include:
+      file: db/changelog/changes/refactor-objecttype-other-operator.yaml      
+  - include:
+      file: db/changelog/changes/refactor-objecttype-other-operator-subtype.yaml  

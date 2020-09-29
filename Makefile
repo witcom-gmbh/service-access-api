@@ -9,8 +9,8 @@ makeMigration:
 update:
 	mvn compile liquibase:update
 
-clean:
-	rm -f target/serviceaccess-dev*
-	rm -f src/main/resources/db/changelog/changes/*-*.yaml
-	sed  -i '/#MARKER#/q' src/main/resources/db/changelog/db.changelog-master.yaml
+#clean:
+#	rm -f target/serviceaccess-dev*
+#	rm -f src/main/resources/db/changelog/changes/*-*.yaml
+#	sed  -i '/#MARKER#/q' src/main/resources/db/changelog/db.changelog-master.yaml
 

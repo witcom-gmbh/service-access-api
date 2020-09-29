@@ -6,7 +6,7 @@ import java.util.Optional;
 public enum ServiceAccessObjectType {
 	OtherOperatorGroup("OtherOperatorGroup","OtherOperatorGroup","ServiceAccessOtherOperatorGroup"),
 	InfraPassive("InfraPassive","InfraPassive","ServiceAccessInfraPassive"),
-	InfraOtherOperator("InfraOtherOperator","InfraOtherOperator","ServiceAccessInfraOtherOperator"),
+	OtherOperator("OtherOperator","OtherOperator","ServiceAccessOtherOperator"),
 	InfraBSA("InfraBSA","InfraBSA","ServiceAccessInfraBSA"),
 	InfraNK("InfraNK","InfraNK","ServiceAccessInfraNK"),
 	InfraActive("InfraActive","InfraActive","ServiceAccessInfraActive");

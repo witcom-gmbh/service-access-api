@@ -32,7 +32,7 @@ import de.witcom.itsm.serviceaccess.enums.ServiceAccessStatus;
 
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = ServiceAccessInfraPassiveDTO.class, name = "ServiceAccessInfraPassiveDTO"),
-		@JsonSubTypes.Type(value = ServiceAccessInfraOtherOperatorDTO.class, name = "ServiceAccessInfraOtherOperatorDTO"),
+		@JsonSubTypes.Type(value = ServiceAccessOtherOperatorDTO.class, name = "ServiceAccessOtherOperatorDTO"),
 		@JsonSubTypes.Type(value = ServiceAccessOtherOperatorGroupDTO.class, name = "ServiceAccessOtherOperatorGroupDTO")
 })
 */

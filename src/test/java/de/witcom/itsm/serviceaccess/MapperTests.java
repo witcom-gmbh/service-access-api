@@ -60,7 +60,7 @@ class MapperTests {
 		 stEW = ServiceAccessSubtype.builder()
 				.name("ETHERNET-WHOLEBUY")
 				.description("Ethernet Fremdoperator")
-				.allowedObjectType(ServiceAccessObjectType.InfraOtherOperator)
+				.allowedObjectType(ServiceAccessObjectType.OtherOperator)
 				.numberOfEndpoints(2)
 				.scope(ServiceAccessScope.SERVICE)
 				.offerScope(ServiceAccessOfferScope.SERVICE)
@@ -98,7 +98,7 @@ class MapperTests {
 		res.setDescription(RandomStringUtils.random(10, true, true));
 		resRef.add(res );
 		
-		CreateUpdateServiceAccessInfraOtherOperatorDTO dto = new CreateUpdateServiceAccessInfraOtherOperatorDTO();
+		CreateUpdateServiceAccessOtherOperatorDTO dto = new CreateUpdateServiceAccessOtherOperatorDTO();
 		dto.setName(RandomStringUtils.random(10, true, false));
 		dto.setProjectId(RandomStringUtils.random(5, false, true));
 		dto.setResources(resRef);
@@ -110,7 +110,7 @@ class MapperTests {
 	}
 	
 	
-	ServiceAccessInfraOtherOperator createOOEntity() {
+	ServiceAccessOtherOperator createOOEntity() {
 
 		HashSet<ResourceReference> ooRes = new HashSet<ResourceReference>();
 		ooRes.add(ResourceReference.builder()
@@ -134,7 +134,7 @@ class MapperTests {
 				.description("Lieferant")
 				.build());
 		
-		ServiceAccessInfraOtherOperator infraOO = ServiceAccessInfraOtherOperator.builder()
+		ServiceAccessOtherOperator infraOO = ServiceAccessOtherOperator.builder()
 				.name("my-name-2")
 				.id("my-id")
 				.resources(ooRes)
@@ -182,13 +182,13 @@ class MapperTests {
 		res.setReferenceId("NOTUNIQUE");
 		resRef.add(res);
 		
-		ServiceAccessInfraOtherOperator entity1 = ServiceAccessInfraOtherOperator.builder()
+		ServiceAccessOtherOperator entity1 = ServiceAccessOtherOperator.builder()
 				.id("SA000000001")
 				.projectId("20449")
 				.resources(resRef)
 				.build();
 		
-		ServiceAccessInfraOtherOperator entity2 = ServiceAccessInfraOtherOperator.builder()
+		ServiceAccessOtherOperator entity2 = ServiceAccessOtherOperator.builder()
 				.id("SA000000003")
 				.projectId("20449")
 				.resources(resRef)
@@ -217,8 +217,8 @@ class MapperTests {
 		
 		if (oo1 instanceof CreateUpdateServiceAccessInfraPassiveDTO) {
 			entity1 = ServiceAccessInfraPassive.builder().build();
-		} else if (oo1 instanceof CreateUpdateServiceAccessInfraOtherOperatorDTO) {
-			entity1 = ServiceAccessInfraOtherOperator.builder().build();
+		} else if (oo1 instanceof CreateUpdateServiceAccessOtherOperatorDTO) {
+			entity1 = ServiceAccessOtherOperator.builder().build();
 		} else if (oo1 instanceof CreateUpdateServiceAccessOtherOperatorGroupDTO) {
 			entity1 = ServiceAccessOtherOperatorGroup.builder().build();
 		} else {
@@ -234,8 +234,8 @@ class MapperTests {
 		
 		if (oo2 instanceof CreateUpdateServiceAccessInfraPassiveDTO) {
 			entity2 = ServiceAccessInfraPassive.builder().build();
-		} else if (oo2 instanceof CreateUpdateServiceAccessInfraOtherOperatorDTO) {
-			entity2 = ServiceAccessInfraOtherOperator.builder().build();
+		} else if (oo2 instanceof CreateUpdateServiceAccessOtherOperatorDTO) {
+			entity2 = ServiceAccessOtherOperator.builder().build();
 		} else if (oo2 instanceof CreateUpdateServiceAccessOtherOperatorGroupDTO) {
 			entity2 = ServiceAccessOtherOperatorGroup.builder().build();
 		} else {
@@ -278,8 +278,8 @@ class MapperTests {
 		
 		if (dto instanceof CreateUpdateServiceAccessInfraPassiveDTO) {
 			entity = ServiceAccessInfraPassive.builder().build();
-		} else if (dto instanceof CreateUpdateServiceAccessInfraOtherOperatorDTO) {
-			entity = ServiceAccessInfraOtherOperator.builder().build();
+		} else if (dto instanceof CreateUpdateServiceAccessOtherOperatorDTO) {
+			entity = ServiceAccessOtherOperator.builder().build();
 		} else if (dto instanceof CreateUpdateServiceAccessOtherOperatorGroupDTO) {
 			entity = ServiceAccessOtherOperatorGroup.builder().build();
 		} else {
