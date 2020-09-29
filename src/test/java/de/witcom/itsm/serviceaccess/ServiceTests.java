@@ -108,7 +108,7 @@ class ServiceTests {
 		
 		HashSet<ResourceReferenceDTO> resRef = new HashSet<ResourceReferenceDTO>();
 		ResourceReferenceDTO res = new ResourceReferenceDTO();
-		res.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_ZONE));
+		res.setType(ResourceTypeDTO.fromEnum(ResourceType.LOCATION));
 		res.setReferenceId(RandomStringUtils.random(10, true, true));
 		resRef.add(res );
 		
@@ -137,11 +137,11 @@ class ServiceTests {
 
 		HashSet<ResourceReferenceDTO> resRef = new HashSet<ResourceReferenceDTO>();
 		ResourceReferenceDTO res = new ResourceReferenceDTO();
-		res.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_ZONE));
+		res.setType(ResourceTypeDTO.fromEnum(ResourceType.LOCATION));
 		res.setDescription(RandomStringUtils.random(10, true, true));
 		resRef.add(res );
 		res = new ResourceReferenceDTO();
-		res.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_ZONE));
+		res.setType(ResourceTypeDTO.fromEnum(ResourceType.LOCATION));
 		res.setReferenceId(RandomStringUtils.random(10, true, true));
 		resRef.add(res );
 		
@@ -296,7 +296,7 @@ class ServiceTests {
 		dto.getResources().add(resref);
 		
 		resref = new ResourceReferenceDTO();
-		resref.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_ZONE));
+		resref.setType(ResourceTypeDTO.fromEnum(ResourceType.LOCATION));
 		resref.setReferenceId(RandomStringUtils.random(10, true, true));
 		dto.getResources().add(resref);
 

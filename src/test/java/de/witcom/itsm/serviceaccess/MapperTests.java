@@ -72,7 +72,7 @@ class MapperTests {
 		
 		HashSet<ResourceReferenceDTO> resRef = new HashSet<ResourceReferenceDTO>();
 		ResourceReferenceDTO res = new ResourceReferenceDTO();
-		res.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_ZONE));
+		res.setType(ResourceTypeDTO.fromEnum(ResourceType.LOCATION));
 		res.setDescription(RandomStringUtils.random(10, true, true));
 		resRef.add(res );
 		
@@ -90,11 +90,11 @@ class MapperTests {
 		
 		HashSet<ResourceReferenceDTO> resRef = new HashSet<ResourceReferenceDTO>();
 		ResourceReferenceDTO res = new ResourceReferenceDTO();
-		res.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_ZONE));
+		res.setType(ResourceTypeDTO.fromEnum(ResourceType.LOCATION));
 		res.setDescription(RandomStringUtils.random(10, true, true));
 		resRef.add(res );
 		res = new ResourceReferenceDTO();
-		res.setType(ResourceTypeDTO.fromEnum(ResourceType.RMDB_ZONE));
+		res.setType(ResourceTypeDTO.fromEnum(ResourceType.LOCATION));
 		res.setDescription(RandomStringUtils.random(10, true, true));
 		resRef.add(res );
 		
@@ -114,12 +114,12 @@ class MapperTests {
 
 		HashSet<ResourceReference> ooRes = new HashSet<ResourceReference>();
 		ooRes.add(ResourceReference.builder()
-				.type(ResourceType.RMDB_ZONE)
+				.type(ResourceType.LOCATION)
 				.referenceId("command-elid-1")
 				.description("A-ENDE")
 				.build());
 		ooRes.add(ResourceReference.builder()
-				.type(ResourceType.RMDB_ZONE)
+				.type(ResourceType.LOCATION)
 				.referenceId("command-elid-2")
 				.description("B-ENDE")
 				.build());
@@ -172,7 +172,7 @@ class MapperTests {
 		resRef.add(res );
 		
 		res = new ResourceReference();
-		res.setType(ResourceType.RMDB_ZONE);
+		res.setType(ResourceType.LOCATION);
 		res.setReferenceId("NX-ID");
 		res.setDescription("NOTUNIQUE");
 		resRef.add(res );

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum ResourceType {
-	RMDB_ZONE("RMDB_ZONE","RMDB Zone"),
+	LOCATION("LOCATION","Standort"),
 	RMDB_OBJECT("RMDB_OBJECT","RMDB Objekt"),
 	RMDB_CONTRACT("RMDB_CONTRACT","RMDB-Vertrag"),
 	RMDB_NNI("RMDB_NNI","RMDB Netzkopplung"),

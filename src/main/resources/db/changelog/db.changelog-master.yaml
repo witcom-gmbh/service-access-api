@@ -13,3 +13,6 @@ databaseChangeLog:
       file: db/changelog/changes/refactor-objecttype-other-operator.yaml      
   - include:
       file: db/changelog/changes/refactor-objecttype-other-operator-subtype.yaml  
+  - include:
+      file: db/changelog/changes/refactor-resource-type.yaml     
+      
