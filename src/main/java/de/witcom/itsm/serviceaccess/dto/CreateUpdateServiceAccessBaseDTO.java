@@ -39,6 +39,7 @@ import de.witcom.itsm.serviceaccess.enums.ServiceAccessStatus;
 public class CreateUpdateServiceAccessBaseDTO {
 	@JsonProperty(required = true)
 	private String name;
+	@Deprecated
 	private String projectId;
 	private Set<ResourceReferenceDTO> resources = new HashSet<ResourceReferenceDTO>();
 	private ServiceAccessSubtypeDTO subType;

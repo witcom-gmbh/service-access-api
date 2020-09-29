@@ -40,6 +40,7 @@ public class ServiceAccessBaseDTO {
 	
 	private String id;
 	private String name;
+	@Deprecated
 	private String projectId;
 	private Set<ResourceReferenceDTO> resources = new HashSet<ResourceReferenceDTO>();
 	private ServiceAccessSubtypeDTO subType;
