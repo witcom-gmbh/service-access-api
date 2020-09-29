@@ -19,4 +19,5 @@ springdoc:
     path: /swagger-ui.html
 
 app:
-  version: 0.0.1-RELEASE    
+  version: ^project.version^
+  description: ^project.description^       
