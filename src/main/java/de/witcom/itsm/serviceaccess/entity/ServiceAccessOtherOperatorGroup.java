@@ -38,9 +38,9 @@ public class ServiceAccessOtherOperatorGroup extends ServiceAccessBase{
       name = "oogroup_oo", 
       joinColumns = @JoinColumn(name = "oogroup_id"), 
       inverseJoinColumns = @JoinColumn(name = "oo_id"))
-	Set<ServiceAccessInfraOtherOperator> otherOperators = new HashSet<ServiceAccessInfraOtherOperator>();
+	Set<ServiceAccessOtherOperator> otherOperators = new HashSet<ServiceAccessOtherOperator>();
 	
-	public void addOtherOperator(ServiceAccessInfraOtherOperator operator) {
+	public void addOtherOperator(ServiceAccessOtherOperator operator) {
 		if (otherOperators.contains(operator)) {
 			return;
 		}
@@ -49,7 +49,7 @@ public class ServiceAccessOtherOperatorGroup extends ServiceAccessBase{
 		otherOperators.add(operator);
 	}
 
-	public void removeOtherOperator(ServiceAccessInfraOtherOperator operator) {
+	public void removeOtherOperator(ServiceAccessOtherOperator operator) {
 		if (!otherOperators.contains(operator)) {
 			return;
 		}
@@ -60,15 +60,15 @@ public class ServiceAccessOtherOperatorGroup extends ServiceAccessBase{
 		otherOperators.remove(operator);
 	}
 	
-    public void updateOperators(Set<ServiceAccessInfraOtherOperator> updatedOperators) {
+    public void updateOperators(Set<ServiceAccessOtherOperator> updatedOperators) {
     	
-    	Set<ServiceAccessInfraOtherOperator> safeCopy = new HashSet<ServiceAccessInfraOtherOperator>(this.getOtherOperators());
-    	for (ServiceAccessInfraOtherOperator oo:safeCopy) {
+    	Set<ServiceAccessOtherOperator> safeCopy = new HashSet<ServiceAccessOtherOperator>(this.getOtherOperators());
+    	for (ServiceAccessOtherOperator oo:safeCopy) {
 			if (!updatedOperators.contains(oo)) {
 				this.removeOtherOperator(oo);
 			}
 		}
-		for (ServiceAccessInfraOtherOperator oo : updatedOperators) {
+		for (ServiceAccessOtherOperator oo : updatedOperators) {
 			this.addOtherOperator(oo);
 		}
     }

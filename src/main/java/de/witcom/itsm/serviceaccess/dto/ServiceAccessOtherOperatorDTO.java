@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper=true, includeFieldNames=true)
-public class ServiceAccessInfraOtherOperatorDTO extends ServiceAccessBaseDTO{
+public class ServiceAccessOtherOperatorDTO extends ServiceAccessBaseDTO{
 	
 	private boolean usedInGroup;
 	private String constraints;
@@ -31,7 +31,7 @@ public class ServiceAccessInfraOtherOperatorDTO extends ServiceAccessBaseDTO{
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ServiceAccessInfraOtherOperatorDTO other = (ServiceAccessInfraOtherOperatorDTO) obj;
+        ServiceAccessOtherOperatorDTO other = (ServiceAccessOtherOperatorDTO) obj;
         return this.getId() != null && this.getId().equals(other.getId());
     }
 

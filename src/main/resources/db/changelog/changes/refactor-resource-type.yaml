@@ -1,0 +1,9 @@
+databaseChangeLog:
+- changeSet:
+    id: refactor resource reference   
+    author: carsten (generated)
+    changes:  
+    - sql: 
+        sql: update RESOURCE_REFERENCE set type='LOCATION' where type='RMDB_ZONE'
+    - sql:
+        sql: update RESOURCE_REFERENCE set reference_id=concat('RMDB_', reference_id) where type='LOCATION' and left('reference_id',5) != 'RMDB_'    

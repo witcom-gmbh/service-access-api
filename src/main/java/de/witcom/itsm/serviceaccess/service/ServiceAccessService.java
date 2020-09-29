@@ -6,7 +6,7 @@ import java.util.Optional;
 import de.witcom.itsm.serviceaccess.dto.CreateServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.dto.CreateUpdateServiceAccessBaseDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessBaseDTO;
-import de.witcom.itsm.serviceaccess.dto.ServiceAccessInfraOtherOperatorDTO;
+import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessOtherOperatorGroupDTO;
 import de.witcom.itsm.serviceaccess.dto.ServiceAccessSubtypeDTO;
 import de.witcom.itsm.serviceaccess.dto.TagDTO;
@@ -22,7 +22,7 @@ import de.witcom.itsm.serviceaccess.exception.PersistenceException;
 public interface ServiceAccessService {
 	
 	public ServiceAccessOtherOperatorGroupDTO updateOtherOperators(String id,
-			List<ServiceAccessInfraOtherOperatorDTO> otherOperators);
+			List<ServiceAccessOtherOperatorDTO> otherOperators);
 	public ServiceAccessBaseDTO updateTags(String id,List<TagDTO> tags);
 	public ServiceAccessBaseDTO updateServiceAccessStatus(String id,ServiceAccessStatus status) 
 			throws NotFoundException,BadRequestException,PersistenceException;

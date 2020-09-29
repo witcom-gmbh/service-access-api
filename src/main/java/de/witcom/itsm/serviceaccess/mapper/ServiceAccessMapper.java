@@ -20,8 +20,8 @@ public interface ServiceAccessMapper {
 	default ServiceAccessBaseDTO toDto(ServiceAccessBase entity) {
 		if(entity instanceof ServiceAccessInfraPassive)
 			return toServiceAccessInfraPassiveDTO((ServiceAccessInfraPassive) entity);
-		else if (entity instanceof ServiceAccessInfraOtherOperator)
-			return toServiceAccessInfraOtherOperatorDTO((ServiceAccessInfraOtherOperator) entity);
+		else if (entity instanceof ServiceAccessOtherOperator)
+			return toServiceAccessOtherOperatorDTO((ServiceAccessOtherOperator) entity);
 		else if (entity instanceof ServiceAccessOtherOperatorGroup)
 			return toServiceAccessOtherOperatorGroupDTO((ServiceAccessOtherOperatorGroup) entity);
 		
@@ -30,8 +30,8 @@ public interface ServiceAccessMapper {
 	default ServiceAccessBase toEntity(ServiceAccessBaseDTO dto) {
 		if(dto instanceof ServiceAccessInfraPassiveDTO)
 			return toServiceAccessInfraPassive((ServiceAccessInfraPassiveDTO) dto);
-		else if (dto instanceof ServiceAccessInfraOtherOperatorDTO)
-			return toServiceAccessInfraOtherOperator((ServiceAccessInfraOtherOperatorDTO) dto);
+		else if (dto instanceof ServiceAccessOtherOperatorDTO)
+			return toServiceAccessOtherOperator((ServiceAccessOtherOperatorDTO) dto);
 		else if (dto instanceof ServiceAccessOtherOperatorGroupDTO)
 			return toServiceAccessOtherOperatorGroup((ServiceAccessOtherOperatorGroupDTO) dto);
 
@@ -42,8 +42,8 @@ public interface ServiceAccessMapper {
 		if(dto instanceof CreateUpdateServiceAccessInfraPassiveDTO) {
 			return createUpdateServiceAccessInfraPassiveFromDTO((CreateUpdateServiceAccessInfraPassiveDTO)dto,(ServiceAccessInfraPassive) entity);
 		}
-		else if (dto instanceof CreateUpdateServiceAccessInfraOtherOperatorDTO) {
-			return createUpdateServiceAccessInfraOtherOperatorFromDTO((CreateUpdateServiceAccessInfraOtherOperatorDTO)dto,(ServiceAccessInfraOtherOperator) entity);
+		else if (dto instanceof CreateUpdateServiceAccessOtherOperatorDTO) {
+			return createUpdateServiceAccessOtherOperatorFromDTO((CreateUpdateServiceAccessOtherOperatorDTO)dto,(ServiceAccessOtherOperator) entity);
 		}
 		else if (dto instanceof CreateUpdateServiceAccessOtherOperatorGroupDTO) {
 			return createUpdateServiceAccessOtherOperatorGroupFromDTO((CreateUpdateServiceAccessOtherOperatorGroupDTO)dto,(ServiceAccessOtherOperatorGroup) entity);
@@ -58,8 +58,8 @@ public interface ServiceAccessMapper {
 	ServiceAccessInfraPassive createUpdateServiceAccessInfraPassiveFromDTO(
 			CreateUpdateServiceAccessInfraPassiveDTO dto,@MappingTarget ServiceAccessInfraPassive entity);
 
-	ServiceAccessInfraOtherOperator createUpdateServiceAccessInfraOtherOperatorFromDTO(
-			CreateUpdateServiceAccessInfraOtherOperatorDTO dto,@MappingTarget ServiceAccessInfraOtherOperator entity);
+	ServiceAccessOtherOperator createUpdateServiceAccessOtherOperatorFromDTO(
+			CreateUpdateServiceAccessOtherOperatorDTO dto,@MappingTarget ServiceAccessOtherOperator entity);
 
 	ServiceAccessOtherOperatorGroup createUpdateServiceAccessOtherOperatorGroupFromDTO(
 			CreateUpdateServiceAccessOtherOperatorGroupDTO dto,@MappingTarget ServiceAccessOtherOperatorGroup entity);
@@ -70,8 +70,8 @@ public interface ServiceAccessMapper {
 	ServiceAccessInfraPassiveDTO toServiceAccessInfraPassiveDTO(ServiceAccessInfraPassive entity);
 	ServiceAccessInfraPassive toServiceAccessInfraPassive(ServiceAccessInfraPassiveDTO dto);
 	
-	ServiceAccessInfraOtherOperatorDTO toServiceAccessInfraOtherOperatorDTO(ServiceAccessInfraOtherOperator entity);
-	ServiceAccessInfraOtherOperator toServiceAccessInfraOtherOperator(ServiceAccessInfraOtherOperatorDTO dto);
+	ServiceAccessOtherOperatorDTO toServiceAccessOtherOperatorDTO(ServiceAccessOtherOperator entity);
+	ServiceAccessOtherOperator toServiceAccessOtherOperator(ServiceAccessOtherOperatorDTO dto);
 
 	ServiceAccessOtherOperatorGroupDTO toServiceAccessOtherOperatorGroupDTO(ServiceAccessOtherOperatorGroup entity);
 	ServiceAccessOtherOperatorGroup toServiceAccessOtherOperatorGroup(ServiceAccessOtherOperatorGroupDTO dto);

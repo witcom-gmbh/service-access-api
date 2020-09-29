@@ -1,0 +1,7 @@
+databaseChangeLog:
+- changeSet:
+    id: refactor other-operator in service-access-subtype table
+    author: carsten (generated)
+    changes:  
+    - sql: 
+        sql: update SERVICE_ACCESS_SUBTYPE set allowed_type='OtherOperator' where allowed_type='InfraOtherOperator'

@@ -1,0 +1,7 @@
+databaseChangeLog:
+- changeSet:
+    id: set-default-value-for-used-in-group
+    author: carsten (generated)
+    changes:  
+    - sql: 
+        sql: update service_access_base set object_type='OtherOperator' where object_type='InfraOtherOperator'
