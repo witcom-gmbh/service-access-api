@@ -4,6 +4,6 @@ databaseChangeLog:
     author: carsten (generated)
     changes:  
     - sql: 
-        sql: update RESOURCE_REFERENCE set type='LOCATION' where type='RMDB_ZONE'
+        sql: update resource_reference set type='LOCATION' where type='RMDB_ZONE'
     - sql:
-        sql: update RESOURCE_REFERENCE set reference_id=concat('RMDB_', reference_id) where type='LOCATION' and left('reference_id',5) != 'RMDB_'    
+        sql: update resource_reference set reference_id=concat('RMDB_', reference_id) where type='LOCATION' and left('reference_id',5) != 'RMDB_'    
